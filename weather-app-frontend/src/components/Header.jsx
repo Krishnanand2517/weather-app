@@ -9,11 +9,11 @@ const Header = ({
         <div>
             <div className="px-56 py-10 flex flex-row-reverse justify-between items-center">
                 <div>
-                    <h3 className="text-3xl">{place}</h3>
+                    <h3 className="text-3xl font-bold">{place}</h3>
                 </div>
 
-                <div className="text-lg">
-                    <h3>{weekday}</h3>
+                <div>
+                    <h3 className="text-lg">{weekday}</h3>
                     <h3>{date}</h3>
                 </div>
             </div>
@@ -29,7 +29,7 @@ const Header = ({
                     </div>
                 </div>
 
-                <div className="text-xl text-center flex flex-wrap">
+                <div className="text-xl pt-3 text-center flex flex-wrap border-solid border-black border-2 rounded-2xl bg-blue-300">
                     <div className="w-1/3">
                         <h3>{minTemp}&deg;C</h3>
                         <h3 className="text-base">Lowest</h3>

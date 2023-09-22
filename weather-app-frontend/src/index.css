@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-    background-color: azure;
+    background-color: rgb(206, 255, 255);
 }
