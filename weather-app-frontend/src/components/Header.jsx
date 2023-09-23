@@ -6,9 +6,9 @@ const Header = ({
 }) => {
     return (
         <div>
-            <div className="px-56 py-10 flex flex-row-reverse justify-between items-center">
+            <div className="px-56 py-10 flex justify-between items-center">
                 <div>
-                    <h3 className="text-3xl font-bold">{place}</h3>
+                    <h3 className="text-3xl font-extrabold">{place}</h3>
                 </div>
 
                 <div>
@@ -28,7 +28,7 @@ const Header = ({
                     </div>
                 </div>
 
-                <div className="text-xl pt-3 text-center flex flex-wrap border-solid border-black border-2 rounded-2xl bg-blue-300">
+                <div className="text-xl font-semibold pt-3 text-center flex flex-wrap border-solid border-black border-2 rounded-2xl bg-blue-300">
                     <div className="w-1/3">
                         <h3>{minTemp}&deg;C</h3>
                         <h3 className="text-base">Lowest</h3>
