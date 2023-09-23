@@ -1,24 +1,9 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
 
 const Header = ({
     place, weather, weekday, date, temperature, icon,
     minTemp, maxTemp, humidity, rainChance, sunrise, sunset
 }) => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        }
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
-
     return (
         <div>
             <div className="px-12 md:px-36 lg:px-56 2xl:px-96 py-10 flex justify-between items-center font-medium">
@@ -29,7 +14,6 @@ const Header = ({
                 <div>
                     <h3 className="text-base sm:text-lg">{weekday}</h3>
                     <h3 className="text-sm sm:text-base">{date}</h3>
-                    <h3>{windowWidth}</h3>
                 </div>
             </div>
 
