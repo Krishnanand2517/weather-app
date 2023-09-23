@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import ThreeHour from './components/ThreeHour';
+import FiveDays from './components/FiveDays';
 import weatherService from './services/weather';
 import threeHourService from './services/threehour';
 
@@ -98,6 +99,8 @@ const App = () => {
         iconArray={iconArray}
         tempArray={tempArray}
       />
+
+      <FiveDays />
     </>
   );
 };
