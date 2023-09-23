@@ -77,7 +77,7 @@ const App = () => {
         const nextMinTempsToShow = fiveDaysData.prediction.map(p => Math.round(p.temp.temp_min - 1));
         const nextMaxTempsToShow = fiveDaysData.prediction.map(p => Math.round(p.temp.temp_max + 1));
         const nextWeathersToShow = fiveDaysData.prediction.map(p => p.weather.condition);
-        const nextRainChancesToShow = fiveDaysData.prediction.map(p => p.weather.rainChance * 100);
+        const nextRainChancesToShow = fiveDaysData.prediction.map(p => Math.round(p.weather.rainChance * 100));
 
         setPlace(`${weatherData.city}, ${weatherData.country}`);
         setWeather(weatherData.weather.condition);
@@ -89,7 +89,7 @@ const App = () => {
         setMinTemp(min_temp - 1);
         setMaxTemp(max_temp + 1);
         setHumidity(weatherData.weather.humidity);
-        setRainChance(threeHourData.prediction[0].weather.rainChance * 100);
+        setRainChance(Math.round(threeHourData.prediction[0].weather.rainChance * 100));
         setSunrise(weatherData.sunrise);
         setSunset(weatherData.sunset);
 
