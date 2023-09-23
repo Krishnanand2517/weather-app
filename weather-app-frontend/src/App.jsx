@@ -4,6 +4,7 @@ import ThreeHour from './components/ThreeHour';
 import FiveDays from './components/FiveDays';
 import weatherService from './services/weather';
 import threeHourService from './services/threehour';
+import fiveDaysService from './services/fivedays';
 
 const App = () => {
   const [place, setPlace] = useState('');
@@ -25,11 +26,20 @@ const App = () => {
   const [iconArray, setIconArray] = useState([]);
   const [tempArray, setTempArray] = useState([]);
 
+  const [nextDateArray, setNextDateArray] = useState([]);
+  const [nextDayArray, setNextDayArray] = useState([]);
+  const [nextIconArray, setNextIconArray] = useState([]);
+  const [nextMinTempArray, setNextMinTempArray] = useState([]);
+  const [nextMaxTempArray, setNextMaxTempArray] = useState([]);
+  const [nextWeatherArray, setNextWeatherArray] = useState([]);
+  const [nextRainChanceArray, setNextRainChanceArray] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const weatherData = await weatherService.getAll();
         const threeHourData = await threeHourService.getAll();
+        const fiveDaysData = await fiveDaysService.getAll();
 
         const fullDateString = weatherData.dateTime.date;
         const dateParts = fullDateString.split(',').map(part => part.trim());
@@ -50,6 +60,25 @@ const App = () => {
         const predictionIcons = threeHourData.prediction.map(p => p.weather.icon);
         const predictionTemps = threeHourData.prediction.map(p => p.temp.temp_current);
 
+        const nextDateStrings = fiveDaysData.prediction.map(p => p.dateTime.date);
+        const nextDateStringsFormatted = nextDateStrings.map(dateString => {
+          const [day, month, year] = dateString.split('/').map(Number);
+
+          const date = new Date(year, month - 1, day);
+          const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          const weekday = weekdays[date.getDay()];
+
+          return `${weekday},${day}/${month}`;
+        });
+        const nextDaysToShow = nextDateStringsFormatted.map(n => n.split(',')[0]);
+        const nextDatesToShow = nextDateStringsFormatted.map(n => n.split(',')[1]);
+
+        const nextIconsToShow = fiveDaysData.prediction.map(p => p.weather.icon);
+        const nextMinTempsToShow = fiveDaysData.prediction.map(p => Math.round(p.temp.temp_min - 1));
+        const nextMaxTempsToShow = fiveDaysData.prediction.map(p => Math.round(p.temp.temp_max + 1));
+        const nextWeathersToShow = fiveDaysData.prediction.map(p => p.weather.condition);
+        const nextRainChancesToShow = fiveDaysData.prediction.map(p => p.weather.rainChance * 100);
+
         setPlace(`${weatherData.city}, ${weatherData.country}`);
         setWeather(weatherData.weather.condition);
         setWeekday(today);
@@ -68,6 +97,14 @@ const App = () => {
         setTimeArray(predictionTimes);
         setIconArray(predictionIcons);
         setTempArray(predictionTemps);
+
+        setNextDateArray(nextDatesToShow);
+        setNextDayArray(nextDaysToShow);
+        setNextIconArray(nextIconsToShow);
+        setNextMinTempArray(nextMinTempsToShow);
+        setNextMaxTempArray(nextMaxTempsToShow);
+        setNextWeatherArray(nextWeathersToShow);
+        setNextRainChanceArray(nextRainChancesToShow);
       } catch (error) {
         console.error("error fetching weather data:", error);
       }
@@ -100,7 +137,15 @@ const App = () => {
         tempArray={tempArray}
       />
 
-      <FiveDays />
+      <FiveDays
+        nextDateArray={nextDateArray}
+        nextDayArray={nextDayArray}
+        nextIconArray={nextIconArray}
+        nextMinTempArray={nextMinTempArray}
+        nextMaxTempArray={nextMaxTempArray}
+        nextWeatherArray={nextWeatherArray}
+        nextRainChanceArray={nextRainChanceArray}
+      />
     </>
   );
 };
