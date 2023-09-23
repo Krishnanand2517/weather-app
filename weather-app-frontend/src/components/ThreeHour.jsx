@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import '../index.css';
+import ThreeHourCard from './ThreeHourCard';
 
 const ThreeHour = ({
     dateArray, timeArray, iconArray, tempArray
@@ -37,42 +37,27 @@ const ThreeHour = ({
     }, []);
 
     return (
-        <div className="px-56 py-10 flex items-center justify-center relative">
-            <div className="absolute left-0 top-0 w-20 ml-56 h-full bg-gradient-to-r from-sky-light to-transparent transition-opacity duration-800" id="left-gradient"></div>
-            <div className="absolute right-0 top-0 w-28 mr-56 h-full bg-gradient-to-l from-sky-light to-transparent transition-opacity duration-800" id="right-gradient"></div>
+        <div className="my-10">
+            <h2 className="mx-56 text-3xl font-bold">24-hour Forecast</h2>
+            <div className="px-56 py-5 flex items-center justify-center relative">
+                <div className="absolute left-0 top-0 w-20 ml-56 h-full bg-gradient-to-r from-sky-light to-transparent transition-opacity duration-800" id="left-gradient"></div>
+                <div className="absolute right-0 top-0 w-28 mr-56 h-full bg-gradient-to-l from-sky-light to-transparent transition-opacity duration-800" id="right-gradient"></div>
 
-            <div className="w-full overflow-x-auto" id="scroll-container">
-                <div className="flex p-4 gap-4">
-                    <div className="bg-blue-300 shadow-md rounded-lg p-4 w-36 flex-shrink-0 text-center">
-                        <div>{dateArray[0]}</div>
-                        <div>{timeArray[0]}</div>
-                        <div>{iconArray[0]}</div>
-                        <div>{tempArray[0]}&deg;C</div>
-                    </div>
-                    <div className="bg-blue-300 shadow-md rounded-lg p-4 w-36 flex-shrink-0 text-center">
-                        <h1>CONTENT</h1>
-                    </div>
-                    <div className="bg-blue-300 shadow-md rounded-lg p-4 w-36 flex-shrink-0 text-center">
-                        <h1>CONTENT</h1>
-                    </div>
-                    <div className="bg-blue-300 shadow-md rounded-lg p-4 w-36 flex-shrink-0 text-center">
-                        <h1>CONTENT</h1>
-                    </div>
-                    <div className="bg-blue-300 shadow-md rounded-lg p-4 w-36 flex-shrink-0 text-center">
-                        <h1>CONTENT</h1>
-                    </div>
-                    <div className="bg-blue-300 shadow-md rounded-lg p-4 w-36 flex-shrink-0 text-center">
-                        <h1>CONTENT</h1>
-                    </div>
-                    <div className="bg-blue-300 shadow-md rounded-lg p-4 w-36 flex-shrink-0 text-center">
-                        <h1>CONTENT</h1>
-                    </div>
-                    <div className="bg-blue-300 shadow-md rounded-lg p-4 w-36 flex-shrink-0 text-center">
-                        <h1>CONTENT</h1>
-                    </div>
+                <div className="w-full overflow-x-auto" id="scroll-container">
+                    <div className="flex p-4 gap-4">
+                        {dateArray.map((_, i) => (
+                            <ThreeHourCard
+                                key={i}
+                                date={dateArray[i]}
+                                time={timeArray[i]}
+                                icon={iconArray[i]}
+                                temperature={tempArray[i]}
+                            />
+                        ))}
 
-                    {/* Last div for some extra space */}
-                    <div className="w-2 flex-shrink-0"></div>
+                        {/* Last div for some extra space */}
+                        <div className="w-2 flex-shrink-0"></div>
+                    </div>
                 </div>
             </div>
         </div>

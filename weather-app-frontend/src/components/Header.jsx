@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import '../index.css';
 
 const Header = ({
     place, weather, weekday, date, temperature, icon,
