@@ -3,5 +3,22 @@
 @tailwind utilities;
 
 body {
-    background-color: rgb(206, 255, 255);
+    background-color: #ceffff;
+}
+
+/* Hide the default scrollbar */
+#scroll-container::-webkit-scrollbar {
+    width: 0.1rem;
+    /* Adjust as needed */
+}
+
+/* Hide scrollbar track */
+#scroll-container::-webkit-scrollbar-track {
+    display: none;
+}
+
+/* Style the scrollbar thumb */
+#scroll-container::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border: none;
 }

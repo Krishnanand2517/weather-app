@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
+import ThreeHour from './components/ThreeHour';
 import weatherService from './services/weather';
 
 const App = () => {
@@ -68,6 +69,8 @@ const App = () => {
         sunrise={sunrise}
         sunset={sunset}
       />
+
+      <ThreeHour />
     </>
   );
 };
