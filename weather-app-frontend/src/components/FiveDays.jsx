@@ -7,8 +7,8 @@ const FiveDays = ({
 }) => {
     return (
         <div>
-            <h2 className="mx-56 text-3xl font-bold">5-Day Forecast</h2>
-            <div className="px-56 py-5 flex flex-col justify-center gap-4">
+            <h2 className="mx-12 md:mx-36 lg:mx-56 xl:mx-72 2xl:mx-96 text-2xl lg:text-3xl font-bold">5-Day Forecast</h2>
+            <div className="px-12 md:px-36 lg:px-56 xl:px-72 2xl:px-96 py-5 flex flex-col justify-center gap-4">
                 {nextDateArray.map((_, i) => (
                     <FiveDaysCard
                         key={i}

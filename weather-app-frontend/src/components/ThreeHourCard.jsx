@@ -4,7 +4,7 @@ const ThreeHourCard = ({
     date, time, icon, temperature
 }) => {
     return (
-        <div className="bg-blue-300 shadow-md p-4 w-36 flex-shrink-0 text-center border-solid border-black border-2 rounded-2xl">
+        <div className="bg-blue-300 shadow-md p-4 w-36 flex-shrink-0 flex-grow text-center border-solid border-black border-2 rounded-2xl">
             <div className="text-lg font-bold">{date}</div>
             <div>{time}</div>
             <div>

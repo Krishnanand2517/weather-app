@@ -7,19 +7,19 @@ const FiveDaysCard = ({
     return (
         <div className="bg-blue-300 w-full p-4 rounded-lg flex justify-between items-center text-center border-solid border-black border-2">
             <div className="w-1/4">
-                <p className="text-lg font-semibold">{nextDay}</p>
-                <p className="text-xl font-bold">{nextDate}</p>
+                <p className="text-lg xl:text-2xl font-semibold">{nextDay}</p>
+                <p className="text-xl xl:text-3xl font-bold">{nextDate}</p>
             </div>
             <div className="w-1/4">
-                <img src={`./${nextIcon}.svg`} alt="weather-icon" width={100}></img>
+                <img className="m-auto w-20 lg:w-24 xl:w-28" src={`./${nextIcon}.svg`} alt="weather-icon"></img>
             </div>
             <div className="w-1/4">
-                <p className="text-lg font-semibold">{nextMinTemp}&deg;C / {nextMaxTemp}&deg;C</p>
-                <p className="text-xl font-bold">{nextWeather}</p>
+                <p className="text-lg xl:text-2xl font-semibold">{nextMinTemp}&deg;C / {nextMaxTemp}&deg;C</p>
+                <p className="text-xl xl:text-2xl font-bold">{nextWeather}</p>
             </div>
-            <div className="w-1/4">
-                <p className="text-lg font-bold">{nextRainChance} %</p>
-                <p className="text-sm font-semibold">Chance of Rain</p>
+            <div className="w-1/4 hidden md:block">
+                <p className="text-lg xl:text-2xl font-bold">{nextRainChance} %</p>
+                <p className="text-sm xl:text-lg font-semibold">Chance of Rain</p>
             </div>
         </div>
     );
