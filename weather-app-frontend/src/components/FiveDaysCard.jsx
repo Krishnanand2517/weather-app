@@ -5,7 +5,7 @@ const FiveDaysCard = ({
     nextWeather, nextRainChance
 }) => {
     return (
-        <div className="bg-blue-300 w-full p-4 rounded-lg flex justify-between items-center text-center border-solid border-black border-2">
+        <div className="bg-blue-300 shadow-md w-full p-4 rounded-lg flex justify-between items-center text-center border-solid border-black border-2">
             <div className="w-1/4">
                 <p className="sm:text-lg 2xl:text-2xl sm:font-semibold">{nextDay}</p>
                 <p className="sm:text-xl 2xl:text-3xl font-medium sm:font-bold">{nextDate}</p>

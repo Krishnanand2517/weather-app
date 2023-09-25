@@ -28,7 +28,7 @@ const Header = ({
                     </div>
                 </div>
 
-                <div className="hidden lg:flex text-xl 2xl:text-2xl font-semibold py-3 text-center flex-wrap border-solid border-black border-2 rounded-2xl bg-blue-300">
+                <div className="hidden lg:flex shadow-md shadow-black text-xl 2xl:text-2xl font-semibold py-3 text-center flex-wrap border-solid border-black border-2 rounded-2xl bg-blue-300">
                     <div className="w-1/3 flex flex-col justify-center items-center">
                         <h3>{minTemp}&deg;C</h3>
                         <h3 className="text-base 2xl:text-lg">Lowest</h3>
