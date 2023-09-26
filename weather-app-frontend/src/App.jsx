@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import LocationForm from './components/LocationForm';
 import Header from './components/Header';
 import ThreeHour from './components/ThreeHour';
 import FiveDays from './components/FiveDays';
@@ -7,6 +8,9 @@ import threeHourService from './services/threehour';
 import fiveDaysService from './services/fivedays';
 
 const App = () => {
+  const [isLocationFound, setIsLocationFound] = useState(false);
+  const [givenLocation, setGivenLocation] = useState('');
+
   const [place, setPlace] = useState('');
   const [weather, setWeather] = useState('');
   const [weekday, setWeekday] = useState('');
@@ -35,6 +39,12 @@ const App = () => {
   const [nextRainChanceArray, setNextRainChanceArray] = useState([]);
 
   useEffect(() => {
+    const appGivenLocation = window.localStorage.getItem('WeatherAppLocation');
+    if (appGivenLocation) {
+      setIsLocationFound(true);
+      setGivenLocation(appGivenLocation);
+    }
+
     const fetchData = async () => {
       try {
         const weatherData = await weatherService.getAll();
@@ -112,6 +122,14 @@ const App = () => {
 
     fetchData();
   }, []);
+
+  if (!isLocationFound) {
+    return (
+      <>
+        <LocationForm />
+      </>
+    );
+  }
 
   return (
     <>
