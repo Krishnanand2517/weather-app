@@ -1,8 +1,8 @@
 import axios from 'axios';
-const baseUrl = '/api/prediction/fivedays/Resolute';
+const baseUrl = '/api/prediction/fivedays';
 
-const getAll = async () => {
-    const response = await axios.get(baseUrl);
+const getAll = async (city) => {
+    const response = await axios.get(`${baseUrl}/${city}`);
     return response.data;
 };
 
