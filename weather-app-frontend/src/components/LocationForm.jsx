@@ -1,13 +1,29 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const LocationForm = ({ handleSubmit }) => {
-    const [location, setLocation] = useState('');
+const LocationForm = ({ handleSubmit, setCurrentCity, city }) => {
+    const [location, setLocation] = useState(city);
 
     const changeLocation = async (event) => {
         event.preventDefault();
 
         handleSubmit(location);
+    };
+
+    const getCurrentCity = (event) => {
+        event.preventDefault();
+
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition((pos) => {
+                const lat = pos.coords.latitude;
+                const long = pos.coords.longitude;
+                setCurrentCity(lat, long);
+            }, (error) => {
+                console.error('cannot get location:', error);
+            });
+        } else {
+            window.alert("Geolocation is not supported in the browser");
+        }
     };
 
     return (
@@ -20,10 +36,10 @@ const LocationForm = ({ handleSubmit }) => {
                         type="text"
                         placeholder="e.g. Mumbai"
                         name="city"
-                        value={location}
+                        value={city || location}
                         onChange={(e) => setLocation(e.target.value)}
                     />
-                    <button className="p-2 rounded-full text-xs md:text-sm 2xl:text-base font-bold bg-blue-300 border-solid border-gray-700 border-2">
+                    <button onClick={getCurrentCity} className="p-2 rounded-full text-xs md:text-sm 2xl:text-base font-bold bg-blue-300 border-solid border-gray-700 border-2">
                         Current Location
                     </button>
                 </div>
@@ -39,7 +55,9 @@ const LocationForm = ({ handleSubmit }) => {
 };
 
 LocationForm.propTypes = {
-    handleSubmit: PropTypes.func.isRequired
+    handleSubmit: PropTypes.func.isRequired,
+    setCurrentCity: PropTypes.func.isRequired,
+    city: PropTypes.string.isRequired
 };
 
 export default LocationForm;

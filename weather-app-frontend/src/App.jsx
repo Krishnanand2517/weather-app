@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import LocationForm from './components/LocationForm';
 import MainPage from './MainPage';
+import currentLocationService from './services/currentlocation';
 
 const App = () => {
   const [isLocationFound, setIsLocationFound] = useState(false);
@@ -20,9 +21,18 @@ const App = () => {
     window.localStorage.setItem('WeatherAppLocation', city);
   };
 
+  const setCurrentLocationInForm = async (lat, long) => {
+    const geoData = await currentLocationService.getAll(lat, long);
+    setGivenLocation(geoData[0].name);
+  };
+
   if (!isLocationFound) {
     return (
-      <LocationForm handleSubmit={setLocation} />
+      <LocationForm
+        city={givenLocation}
+        handleSubmit={setLocation}
+        setCurrentCity={setCurrentLocationInForm}
+      />
     );
   }
 
