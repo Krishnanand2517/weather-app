@@ -7,6 +7,7 @@ const predictionRouter = require('./controllers/prediction');
 const revGeoRouter = require('./controllers/rev_geolocation');
 
 app.use(express.json());
+app.use(express.static('dist'));
 app.use('/weather', weatherRouter);
 app.use('/prediction', predictionRouter);
 app.use('/revgeo', revGeoRouter);
