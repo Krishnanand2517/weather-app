@@ -4,11 +4,19 @@ const Header = ({
     place, weather, weekday, date, temperature, icon,
     minTemp, maxTemp, humidity, rainChance, sunrise, sunset
 }) => {
+    const changeLocation = () => {
+        window.localStorage.clear();
+        window.location.reload();
+    };
+
     return (
         <div>
             <div className="px-12 md:px-36 lg:px-56 2xl:px-96 py-10 flex justify-between items-center font-medium">
                 <div>
                     <h3 className="text-lg sm:text-2xl lg:text-3xl font-extrabold">{place}</h3>
+                    <button onClick={changeLocation} className="p-2 mt-4 rounded-full text-xs md:text-sm 2xl:text-base font-bold bg-blue-300 border-solid border-gray-700 border-2">
+                        Change
+                    </button>
                 </div>
 
                 <div>
